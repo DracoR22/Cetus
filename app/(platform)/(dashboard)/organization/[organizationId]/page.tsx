@@ -1,28 +1,28 @@
-import { create } from '@/actions/create-board'
-import { Button } from '@/components/ui/button'
+import { createBoard } from '@/actions/create-board'
+import { useAction } from '@/hooks/use-action'
 import { db } from '@/lib/db'
-import React from 'react'
 
 const OrganizationIdPage = async () => {
 
-  const boards = await db.board.findMany()
+  const { execute, fieldErrors } = useAction(createBoard, {
+    onSuccess: (data) => {
+      console.log(data, "SUCCESS!")
+    },
+    onError: (error) => {
+      console.error(error)
+    } 
+  })
+
+  const onSubmit = (formdata: FormData) => {
+    const title = formdata.get("title") as string
+
+    execute({ title })
+  }
 
   return (
-    <div className='flex flex-col space-y-4'>  
-      <form action={create}>
-        <input id='title' name='title' required placeholder='Enter a board title' className='border-black border p-1'/>
-        <Button type='submit'>
-          Submit
-        </Button>
-      </form>
-      <div className='space-y-2'>
-        {boards.map((board) => (
-          <div key={board.id}>
-            Board name: {board.title}
-          </div>
-        ))}
-      </div>
-    </div>
+   <form action="">
+     
+   </form>
   )
 }
 

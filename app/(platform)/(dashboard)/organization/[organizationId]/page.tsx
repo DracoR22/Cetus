@@ -1,28 +1,20 @@
-import { createBoard } from '@/actions/create-board'
-import { useAction } from '@/hooks/use-action'
-import { db } from '@/lib/db'
+import BoardList from "@/components/organization/BoardList"
+import Info from "@/components/organization/Info"
+import { Separator } from "@/components/ui/separator"
+import { Suspense } from "react"
 
 const OrganizationIdPage = async () => {
 
-  const { execute, fieldErrors } = useAction(createBoard, {
-    onSuccess: (data) => {
-      console.log(data, "SUCCESS!")
-    },
-    onError: (error) => {
-      console.error(error)
-    } 
-  })
-
-  const onSubmit = (formdata: FormData) => {
-    const title = formdata.get("title") as string
-
-    execute({ title })
-  }
-
   return (
-   <form action="">
-     
-   </form>
+   <div className="w-full mb-20">
+     <Info/>
+     <Separator className="my-4"/>
+     <div className="px-2 md:px-4">
+      <Suspense fallback={<BoardList.Skeleton/>}>
+        <BoardList/>
+      </Suspense>
+     </div>
+   </div>
   )
 }
 

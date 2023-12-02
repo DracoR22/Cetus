@@ -1,5 +1,4 @@
-# Project Name
-Cetus
+# Cetus
 
 ## Description
 

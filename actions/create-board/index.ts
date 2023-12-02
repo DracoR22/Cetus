@@ -16,6 +16,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         }
     }
 
+    // THIS IS REQ BODY
     const { title, image } = data;
 
     const [imageId, imageThumbUrl, imageFullUrl, imageLinkHTML, imageUserName] = image.split("|")

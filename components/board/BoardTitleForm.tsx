@@ -33,6 +33,7 @@ const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
    const [title, setTitle] = useState(data.title)
    const [isEditing, setIsEditing] = useState(false)
 
+   // FUNCTION TO OPEN EDITING MODAL
    const enableEditing = () => {
     setIsEditing(true)
     setTimeout(() => {
@@ -41,10 +42,12 @@ const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
     })
    }
 
+   // FUNCTION TO CLOSE EDITING MODAL
    const disableEditing = () => {
     setIsEditing(false)
    }
 
+   // SUBMIT FORM 
    const onSubmit = (formData: FormData) => {
      const title = formData.get("title") as string
 
@@ -64,6 +67,7 @@ const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
     formRef.current?.requestSubmit()
    }
 
+   // EDITING MODAL
    if (isEditing) {
     return (
         <form action={onSubmit} ref={formRef} className="flex items-center gap-x-2">

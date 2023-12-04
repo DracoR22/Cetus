@@ -17,7 +17,7 @@ Key Features:
 - Board limit for every organization
 - Stripe subscription for each organization to unlock unlimited boards
 - Landing page
-- MySQL DB
+- MongoDB
 - Prisma ORM
 - shadcnUI & TailwindCSS
 

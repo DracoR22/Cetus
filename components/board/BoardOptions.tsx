@@ -13,6 +13,7 @@ interface BoardOptionsProps {
 
 const BoardOptions = ({ id }: BoardOptionsProps) => {
 
+  // GET THE ACTION FROM OUR SERVER ACTION AND DELETE THE BOARD
   const { execute, isLoading } = useAction(deleteBoard, {
     onError: (error) => {
         toast.error(error)

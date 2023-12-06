@@ -5,7 +5,11 @@ import { CreditCard } from "lucide-react"
 import Image from "next/image"
 import { Skeleton } from "../ui/skeleton"
 
-const Info = () => {
+interface InfoProps {
+  isPro: boolean
+}
+
+const Info = ({ isPro }: InfoProps) => {
 
    const { organization, isLoaded } = useOrganization()
 
@@ -26,7 +30,7 @@ const Info = () => {
             </p>
             <div className="flex items-center text-xs text-muted-foreground">
                 <CreditCard className="h-3 w-2 mr-1"/>
-                Free
+                {isPro ? "Premium" : "Free"}
             </div>
         </div>
     </div>

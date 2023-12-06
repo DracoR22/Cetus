@@ -26,6 +26,10 @@ const Header = ({ data }: HeaderProps) => {
         queryKey: ["card", data.id]
       })
 
+      queryClient.invalidateQueries({
+        queryKey: ["card-logs", data.id]
+      })
+
       toast.success(`Renamed to "${data.title}"`)
       setTitle(data.title)
     },
@@ -68,7 +72,7 @@ const Header = ({ data }: HeaderProps) => {
              relative -left-1.5 w-[95%] focus-visible:bg-white focus-visible:border-input mb-0.5"/>
           </form>
           <p className="text-sm text-muted-foreground">
-            inlist <span className="underline">{data.list.title}</span>
+            in list <span className="underline">{data.list.title}</span>
           </p>
         </div>
     </div>

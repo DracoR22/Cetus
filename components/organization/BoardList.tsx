@@ -6,6 +6,9 @@ import { redirect } from "next/navigation"
 import { db } from "@/lib/db"
 import Link from "next/link"
 import { Skeleton } from "../ui/skeleton"
+import { getAvailableCount } from "@/lib/org-limit"
+import { MAX_FREE_BOARDS } from "@/constants/boards"
+import { checkSubscription } from "@/lib/subscription"
 
 const BoardList = async () => {
 
@@ -23,6 +26,12 @@ const BoardList = async () => {
       createdAt: "desc"
     }
   })
+
+  // GET ORGANIZATION FREE BOARDS CREATED
+  const availableCount = await getAvailableCount()
+
+  // CHECK IF ORGANIZATION PAID PREMIUM
+   const isPro = await checkSubscription()
 
   return (
     <div className="space-y-4">
@@ -48,7 +57,7 @@ const BoardList = async () => {
         <div role="button" className="aspect-video relative h-full w-full bg-muted rounded-sm flex flex-col gap-y-1 items-center justify-center hover:opacity-75 transition">
          <p className="text-sm">Create new board</p>
          <span className="text-xs">
-            5 remaining
+            {isPro ? "Unlimited" : `${MAX_FREE_BOARDS - availableCount} remaining`}
          </span>
          <Hint sideOffset={40} description={`Free workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace`}>
            <HelpCircle className="absolute bottom-2 right-2 h-[14px] w-[14px]"/>

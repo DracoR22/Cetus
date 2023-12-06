@@ -54,6 +54,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
                   name: "Cetus Premium",
                   description: "Unlimited boards for your organization"
                 },
+                // SUBSCRIPTION WILL BE 20$ A MONTH
                 unit_amount: 2000,
                 recurring: {
                   interval: "month"
